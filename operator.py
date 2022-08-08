@@ -9,6 +9,8 @@ import bpy
 from bpy.types import Operator
 import re
 
+from .properties import DuplicateNameModifierProperties
+
 expression = r"^(.*)\.(\w{3})$"
 
 class DuplicateEventListener(Operator):
@@ -16,21 +18,12 @@ class DuplicateEventListener(Operator):
     bl_label = "Duplicate Event Listener"
 
     __is_initialized = False
-    __listening = False
     __cached_objects = []
-
-    @classmethod
-    def is_listening(cls):
-        return cls.__listening
-
-    @classmethod
-    def reset(cls):
-        cls.__listening = False
 
     def collect_objects(self) -> list[any]:
         objects = bpy.data.objects
 
-        return list(filter(lambda w: True, objects))
+        return list(filter(lambda w: hasattr(w, "name"), objects))
 
     def get_newer_objects(self, old_objects: list[any], new_objects: list[any]) -> list[any]:
         news = []
@@ -78,7 +71,7 @@ class DuplicateEventListener(Operator):
         if context.area:
             context.area.tag_redraw()
 
-        if not self.is_listening():
+        if not context.scene.DuplicateNameModifierProperties.is_listening:
             self.__is_initialized = False
             return {'FINISHED'}
 
@@ -101,15 +94,15 @@ class DuplicateEventListener(Operator):
 
     def invoke(self, context, event):
         cls = DuplicateEventListener
+        props: DuplicateNameModifierProperties = context.scene.DuplicateNameModifierProperties
+
 
         if context.area.type == "VIEW_3D":
-            if not self.is_listening():
-                cls.__listening = True
+            if props.is_listening:
                 context.window_manager.modal_handler_add(self)
                 return {'RUNNING_MODAL'}
 
             else:
-                cls.__listening = False
                 return {'FINISHED'}
 
         return {'CANCELED'}

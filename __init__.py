@@ -9,7 +9,7 @@ bl_info = {
     "description": "Blender add-on for changing naming convention when objects are duplicated",
     "blender": (3, 0, 0),
     "version": (1, 0, 0),
-    "location": "3D View > Sidebar > TextMesh Creator",
+    "location": "3D View > Sidebar > Duplicate Name Modifier",
     "warning": "",
     "category": "Generic"
 }
@@ -30,6 +30,7 @@ else:
 
 classes = [
     operator.DuplicateEventListener,
+    properties.DuplicateNameModifierProperties,
     ui.DuplicateEventListenerUI
 ]
 
@@ -38,10 +39,14 @@ def register():
     for c in classes:
         bpy.utils.register_class(c)
 
+    bpy.types.Scene.DuplicateNameModifierProperties = PointerProperty(type=properties.DuplicateNameModifierProperties)
+
 
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
+
+    del bpy.types.Scene.DuplicateNameModifierProperties
 
 
 if __name__ == "__main__":
