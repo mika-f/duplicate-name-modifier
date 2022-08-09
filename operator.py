@@ -11,7 +11,8 @@ import re
 
 from .properties import DuplicateNameModifierProperties
 
-expression = r"^(.*)\.(\w{3})$"
+expression1 = r"^(.*)\.(\w{3})$"
+expression2 = r"^(.*)_(\w{3})$"
 
 class DuplicateEventListener(Operator):
     bl_idname = "object.duplicate_event_listener"
@@ -49,11 +50,19 @@ class DuplicateEventListener(Operator):
             if not hasattr(obj, "name"):
                 continue
 
-            if not re.match(expression, obj.name):
+            if not re.match(expression1, obj.name):
                 continue
 
-            match = re.search(expression, obj.name)
-            counter = int(match.group(2))
+            match = re.search(expression1, obj.name)
+
+            # when Object.001 copied, destination object is named as Object.002
+            # when Object_001 copied, destination object is named as Object_002
+            if re.match(expression2, match.group(1)):
+                match = re.search(expression2, match.group(1))
+
+                counter = int(1)
+            else:
+                counter = int(match.group(2))
 
             while True:
                 new_name = match.group(1) + "_" + str(counter).zfill(3)
