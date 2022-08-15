@@ -13,4 +13,4 @@ class DuplicateNameModifierProperties(PropertyGroup):
     def on_update(self, context):
         bpy.ops.object.duplicate_event_listener("INVOKE_DEFAULT")
 
-    is_listening: BoolProperty(name = "Apply Maya-style Naming Convention", default=False, update=on_update, options={"HIDDEN"})
+    is_listening: BoolProperty(name = "Apply Underscore-style Naming Convention", default=False, update=on_update, options={"HIDDEN"})
