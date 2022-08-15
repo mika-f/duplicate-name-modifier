@@ -8,7 +8,7 @@ bl_info = {
     "author": "Natsuneko",
     "description": "Blender add-on for changing naming convention when objects are duplicated",
     "blender": (3, 0, 0),
-    "version": (1, 0, 1),
+    "version": (1, 0, 2),
     "location": "3D View > Sidebar > Duplicate Name Modifier",
     "warning": "",
     "category": "Generic"
