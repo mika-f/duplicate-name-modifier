@@ -1,7 +1,7 @@
-# ----------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 #  Copyright (c) Natsuneko. All rights reserved.
-#  Licensed under the Proprietary License. Please read the https://docs.natsuneko.moe/en-US/limited-license
-# ----------------------------------------------------------------------------------------------------------
+#  Licensed under the MIT License. See LICENSE in the project root for license information.
+# ------------------------------------------------------------------------------------------
 
 import bpy
 

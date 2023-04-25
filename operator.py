@@ -1,7 +1,7 @@
-# ----------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 #  Copyright (c) Natsuneko. All rights reserved.
-#  Licensed under the Proprietary License. Please read the https://docs.natsuneko.moe/en-US/limited-license
-# ----------------------------------------------------------------------------------------------------------
+#  Licensed under the MIT License. See LICENSE in the project root for license information.
+# ------------------------------------------------------------------------------------------
 
 from __future__ import annotations
 
@@ -92,6 +92,7 @@ class DuplicateEventListener(Operator):
             return {'PASS_THROUGH'}
 
         if len(objects) <= len(self.__cached_objects):
+            self.__cached_objects = objects
             return {'PASS_THROUGH'}
 
         newer_objects = self.get_newer_objects(self.__cached_objects, objects)

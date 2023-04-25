@@ -1,14 +1,14 @@
-# ----------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 #  Copyright (c) Natsuneko. All rights reserved.
-#  Licensed under the Proprietary License. Please read the https://docs.natsuneko.moe/en-US/limited-license
-# ----------------------------------------------------------------------------------------------------------
+#  Licensed under the MIT License. See LICENSE in the project root for license information.
+# ------------------------------------------------------------------------------------------
 
 bl_info = {
     "name": "Duplicate Name Modifier",
     "author": "Natsuneko",
     "description": "Blender add-on for changing naming convention when objects are duplicated",
     "blender": (3, 0, 0),
-    "version": (1, 0, 2),
+    "version": (1, 0, 3),
     "location": "3D View > Sidebar > Duplicate Name Modifier",
     "warning": "",
     "category": "Generic"

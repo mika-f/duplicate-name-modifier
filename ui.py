@@ -1,7 +1,7 @@
-# ----------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 #  Copyright (c) Natsuneko. All rights reserved.
-#  Licensed under the Proprietary License. Please read the https://docs.natsuneko.moe/en-US/limited-license
-# ----------------------------------------------------------------------------------------------------------
+#  Licensed under the MIT License. See LICENSE in the project root for license information.
+# ------------------------------------------------------------------------------------------
 
 import bpy
 from bpy.types import Panel
@@ -17,7 +17,6 @@ class DuplicateEventListenerUI(Panel):
     bl_category = "Duplicate Naming Style"
 
     def draw(self, context):
-        cls = DuplicateEventListener
         props: DuplicateNameModifierProperties = context.scene.DuplicateNameModifierProperties
 
         layout = self.layout
